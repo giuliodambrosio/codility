@@ -10,7 +10,7 @@ class TheCoderOfRiviaSpec extends Spec {
   def generateMagicCubeTest: Result =
     Result.forall(testCases) {
       case (inputArray, validAnswers) =>
-        val actualAnswer = TheCoderOfRivia.solution(inputArray)
+        val actualAnswer = TheCoderOfRivia.Solution.solution(inputArray)
         validAnswers.exists(_.sameElements(actualAnswer)) must beTrue
     }
 
