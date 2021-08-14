@@ -26,8 +26,8 @@ object TheCoderOfRivia {
       lazy val allSums: Set[Int] = colSums.toSet ++ rowSums
       lazy val isMagic: Boolean = allSums.size == 1
       lazy val goalValue: Int = allSums.max
-      lazy val rowsToBeFixed: Map[Int, Array[Int]] = offendingSumToDiffAndIndices(rowSums)
-      lazy val colsToBeFixed: Map[Int, Array[Int]] = offendingSumToDiffAndIndices(colSums)
+      lazy val diffToBeAddedToRows: Map[Int, Array[Int]] = offendingSumToDiffAndIndices(rowSums)
+      lazy val diffToBeAddedToCols: Map[Int, Array[Int]] = offendingSumToDiffAndIndices(colSums)
 
       def toArray: Array[Int] = rows.flatten
 
@@ -35,8 +35,8 @@ object TheCoderOfRivia {
         if (isMagic)
           this
         else {
-          val (rowDiff, rowIndices) = rowsToBeFixed.maxBy(_._1)
-          val (colDiff, colIndices) = colsToBeFixed.maxBy(_._1)
+          val (rowDiff, rowIndices) = diffToBeAddedToRows.maxBy(_._1)
+          val (colDiff, colIndices) = diffToBeAddedToCols.maxBy(_._1)
           addToValueAt(rowIndices.head, colIndices.head, Math.min(rowDiff, colDiff))
         }
       }
